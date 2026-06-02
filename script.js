@@ -21,6 +21,8 @@
     { file: "sausage-boats.jpg",       label: "Sausage boats" },
     { file: "bbq-tacos.jpg",           label: "BBQ tacos" },
     { file: "chimichurri-sandwich.jpg", label: "Chimichurri sandwich" },
+    { file: "chimichurri-steak.jpg",   label: "Chimichurri steak (new)" },
+    { file: "pulled-pork-slaw.jpg",    label: "Pulled pork + slaw (new)" },
   ];
 
   // ===== Sidebar nav: swap active panel =====
