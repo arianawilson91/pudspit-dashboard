@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const PORT = Number(process.env.PORT || 8090);
+const HOST = "0.0.0.0";
 const ROOT = __dirname;
 
 const MIME = {
@@ -46,6 +47,6 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`Pud's Pit dashboard listening on http://localhost:${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`Pud's Pit dashboard listening on http://${HOST}:${PORT}`);
 });

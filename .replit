@@ -1,0 +1,14 @@
+run = "node server.js"
+entrypoint = "server.js"
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "node server.js"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 8090
+externalPort = 80

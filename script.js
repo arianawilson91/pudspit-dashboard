@@ -1,4 +1,28 @@
 (function () {
+  // ===== Photo library — every background option available in the picker =====
+  // To add new photos: drop them into assets/, add the filename here.
+  const PHOTOS = [
+    { file: "food-truck.jpg",          label: "The truck" },
+    { file: "truck-side.jpg",          label: "Truck (side)" },
+    { file: "truck-interior.jpg",      label: "Truck (interior)" },
+    { file: "truck-palm-trees.jpg",    label: "Truck + palm trees" },
+    { file: "ribs-on-smoker.jpg",      label: "Ribs on smoker" },
+    { file: "ribs-glazed.jpg",         label: "Glazed ribs" },
+    { file: "ribs-sliced.jpg",         label: "Sliced ribs" },
+    { file: "rib-smoke-ring.jpg",      label: "Rib smoke ring" },
+    { file: "finished-racks.jpg",      label: "Finished racks" },
+    { file: "brisket-sliced.jpg",      label: "Sliced brisket" },
+    { file: "smoked-chicken.jpg",      label: "Smoked chicken" },
+    { file: "smoked-turkey.jpg",       label: "Smoked turkey" },
+    { file: "smoker-wings.jpg",        label: "Wings on the smoker" },
+    { file: "smoker-full.jpg",         label: "Smoker (full)" },
+    { file: "smoker-ribs-chicken.jpg", label: "Smoker (ribs + chicken)" },
+    { file: "whole-hog-smoker.jpg",    label: "Whole hog" },
+    { file: "sausage-boats.jpg",       label: "Sausage boats" },
+    { file: "bbq-tacos.jpg",           label: "BBQ tacos" },
+    { file: "chimichurri-sandwich.jpg", label: "Chimichurri sandwich" },
+  ];
+
   // ===== Sidebar nav: swap active panel =====
   const navItems = document.querySelectorAll(".navitem");
   const panels = document.querySelectorAll(".panel");
@@ -26,7 +50,54 @@
     });
   });
 
-  // ===== Download buttons: render the postframe to a 1080x1350 PNG =====
+  // ===== Inject a photo picker above every postframe =====
+  document.querySelectorAll(".postwrap").forEach((wrap) => {
+    const bg = wrap.querySelector(".postframe__bg");
+    if (!bg) return;
+
+    // Current photo (basename) from the src
+    const currentFile = bg.getAttribute("src").split("/").pop();
+
+    // Build the picker
+    const pickerWrap = document.createElement("div");
+    pickerWrap.className = "bgpicker-wrap";
+
+    const label = document.createElement("label");
+    label.textContent = "Photo";
+
+    const select = document.createElement("select");
+    select.className = "bgpicker";
+    PHOTOS.forEach((p) => {
+      const opt = document.createElement("option");
+      opt.value = p.file;
+      opt.textContent = p.label;
+      if (p.file === currentFile) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // If the current file isn't in PHOTOS (e.g. someone hand-edited), include it
+    if (!PHOTOS.find((p) => p.file === currentFile)) {
+      const opt = document.createElement("option");
+      opt.value = currentFile;
+      opt.textContent = currentFile + " (current)";
+      opt.selected = true;
+      select.insertBefore(opt, select.firstChild);
+    }
+
+    select.addEventListener("change", () => {
+      bg.setAttribute("src", "assets/" + select.value);
+    });
+
+    pickerWrap.appendChild(label);
+    pickerWrap.appendChild(select);
+
+    // Insert before the postframe
+    const frame = wrap.querySelector(".postframe");
+    wrap.insertBefore(pickerWrap, frame);
+  });
+
+  // ===== Download buttons: render the postframe to PNG =====
+  // Feed posts: 1080x1350. Stories: 1080x1920.
   document.querySelectorAll(".btn-download").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const targetId = btn.dataset.target;
@@ -38,7 +109,7 @@
       btn.textContent = "Rendering…";
 
       try {
-        // Scale up so the captured image is 1080 wide regardless of viewport size
+        // Scale so the captured image is 1080 wide regardless of viewport
         const rect = node.getBoundingClientRect();
         const scale = 1080 / rect.width;
 
