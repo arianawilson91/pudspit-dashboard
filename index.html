@@ -16,8 +16,31 @@
     <div class="topbar__inner">
       <div class="weekpill" id="weekpill">WEEK OF —</div>
       <p class="topbar__tag" id="tagline"></p>
+      <div class="topbar__actions">
+        <button type="button" class="btn-topbar" id="btn-reset" title="Discard all edits and reload from content.js">RESET</button>
+        <button type="button" class="btn-topbar btn-topbar--primary" id="btn-save">SAVE WEEK ↓</button>
+      </div>
     </div>
   </header>
+
+  <!-- Save Week modal -->
+  <div class="modal" id="save-modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-labelledby="save-title" aria-modal="true">
+      <div class="modal__head">
+        <h2 id="save-title">Save this week</h2>
+        <button type="button" class="modal__close" data-close aria-label="Close">×</button>
+      </div>
+      <p class="modal__intro">
+        Copy this block, then replace the matching section of <code>content.js</code> in your repo. Commit + push to lock it in. Or just keep editing in the dashboard — your changes are auto-saved to this browser.
+      </p>
+      <textarea class="modal__textarea" id="save-output" spellcheck="false" readonly></textarea>
+      <div class="modal__actions">
+        <button type="button" class="btn-topbar" id="btn-copy">COPY TO CLIPBOARD</button>
+        <button type="button" class="btn-topbar" id="btn-download-js">DOWNLOAD content.js</button>
+      </div>
+    </div>
+  </div>
 
   <main class="layout">
     <nav class="sidebar" id="sidebar" aria-label="Dashboard sections"></nav>
