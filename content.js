@@ -49,6 +49,14 @@ window.CONTENT = {
           headline: "Glazed. Sliced. Gone.",
           sub: "The Big Rack is on the smoker now — $3 a bone.",
         },
+        {
+          tabLabel: "Wings Drop",
+          postNumber: "POST 03",
+          postName: "Flappers & Drums",
+          photo: "smoker-wings.jpg",
+          headline: "Flappers & drums, done right.",
+          sub: "Five for $11. Twelve for $20. Gone by sunset.",
+        },
       ],
     },
 
@@ -124,9 +132,25 @@ window.CONTENT = {
           tabLabel: "Family Moment",
           postNumber: "REEL 03",
           postName: "Family at the truck",
-          photo: "smoker-wings.jpg",
+          photo: "truck-side.jpg",
           headline: "Family operated.",
           sub: "Scott, Wendy, Ashlan, Kyler — all hands, every weekend.",
+        },
+        {
+          tabLabel: "Smoke Ring",
+          postNumber: "REEL 04",
+          postName: "Look for the ring",
+          photo: "rib-smoke-ring.jpg",
+          headline: "Look for the ring.",
+          sub: "That pink line means we did it right. Oak smoke only.",
+        },
+        {
+          tabLabel: "Order Up",
+          postNumber: "REEL 05",
+          postName: "Built to order",
+          photo: "pulled-pork-slaw.jpg",
+          headline: "Order up.",
+          sub: "Pull Piggy topped with B's Slaw — watch it get built.",
         },
       ],
     },
@@ -164,9 +188,17 @@ window.CONTENT = {
           tabLabel: "Catering Pitch",
           postNumber: "CAROUSEL 03",
           postName: "Catering, built for the backyard.",
-          photo: "food-truck.jpg",
+          photo: "whole-hog-smoker.jpg",
           headline: "Book the truck.",
           sub: "Weddings, fundraisers, corporate. Swipe for the meats & how to book.",
+        },
+        {
+          tabLabel: "Deep Cuts",
+          postNumber: "CAROUSEL 04",
+          postName: "The order regulars make.",
+          photo: "sausage-boats.jpg",
+          headline: "Deep cuts.",
+          sub: "Swipe → Sausage Boats, Puds Spuds, Bayou Beans. The regulars know.",
         },
       ],
     },
@@ -210,6 +242,92 @@ window.CONTENT = {
           kicker: "4 AM",
           headline: "Up before the sun.",
           sub: "Oak loaded. Coals lit. See you at the truck.",
+        },
+        {
+          tabLabel: "Last Call",
+          postNumber: "STORY 04",
+          postName: "Almost sold out",
+          photo: "brisket-sliced.jpg",
+          kicker: "LAST CALL",
+          headline: "Almost sold out.",
+          sub: "Brisket's going fast — pull up before 7.",
+        },
+        {
+          tabLabel: "Catering",
+          postNumber: "STORY 05",
+          postName: "Book the whole hog",
+          photo: "whole-hog-smoker.jpg",
+          kicker: "CATERING OPEN",
+          headline: "Book the whole hog.",
+          sub: "Summer dates are filling — call (239) 220-6014.",
+        },
+      ],
+    },
+
+    // ─────────────────────────────────────────────────
+    // 06 · IDEA BANK — grab-and-go content ideas.
+    // Not rendered as posts; this is the well to pull
+    // from when you want an extra post mid-week.
+    // ─────────────────────────────────────────────────
+    {
+      id: "ideas",
+      number: "06",
+      navLabel: "Idea Bank",
+      titleLead: "IDEA",
+      titleAccent: "BANK",
+      subtitle:
+        "Ten extra angles ready to shoot whenever there's a gap in the week. Pull one, film it, post it.",
+      format: "checkin",
+      rows: [
+        {
+          label: "Pitmaster Q&A",
+          value:
+            "Scott answers one customer question on camera. 30 seconds. Start with \"why oak?\"",
+        },
+        {
+          label: "Smoker timelapse",
+          value:
+            "Prop a phone at 4am, compress 12 hours into 15 seconds. Post it Friday morning.",
+        },
+        {
+          label: "Sauce origin story",
+          value:
+            "Three-slide carousel on how the signature glaze came to be. Family recipe angle.",
+        },
+        {
+          label: "This-or-that poll",
+          value:
+            "Story poll: Mac N Cheese vs Puds Spuds. The loser gets a redemption feature next week.",
+        },
+        {
+          label: "Regulars wall",
+          value:
+            "Photo of a repeat customer with their usual order. Ask permission, tag them.",
+        },
+        {
+          label: "Behind the window",
+          value:
+            "Wendy's view during the Saturday rush — handoffs, chaos, laughing. Raw and fast.",
+        },
+        {
+          label: "Kyler's pick",
+          value:
+            "The Future picks one menu item a month and says why. Next-generation angle.",
+        },
+        {
+          label: "Sold-out post",
+          value:
+            "When something sells out, post the empty pan. Scarcity is the best advertisement.",
+        },
+        {
+          label: "Catering recap",
+          value:
+            "After every event: one carousel of the setup, the spread, and a quote from the host.",
+        },
+        {
+          label: "Local shoutout",
+          value:
+            "Tag the brewery or market you're parked at. They reshare — you reach their whole crowd.",
         },
       ],
     },
