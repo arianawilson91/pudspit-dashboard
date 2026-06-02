@@ -1,34 +1,211 @@
+/* =====================================================
+   PUD'S PIT DASHBOARD · RENDER + WIRE-UP
+   --------------------------------------------------
+   You should NOT have to edit this file weekly.
+   All weekly content lives in content.js.
+   ===================================================== */
+
 (function () {
-  // ===== Photo library — every background option available in the picker =====
-  // To add new photos: drop them into assets/, add the filename here.
-  const PHOTOS = [
-    { file: "food-truck.jpg",          label: "The truck" },
-    { file: "truck-side.jpg",          label: "Truck (side)" },
-    { file: "truck-interior.jpg",      label: "Truck (interior)" },
-    { file: "truck-palm-trees.jpg",    label: "Truck + palm trees" },
-    { file: "ribs-on-smoker.jpg",      label: "Ribs on smoker" },
-    { file: "ribs-glazed.jpg",         label: "Glazed ribs" },
-    { file: "ribs-sliced.jpg",         label: "Sliced ribs" },
-    { file: "rib-smoke-ring.jpg",      label: "Rib smoke ring" },
-    { file: "finished-racks.jpg",      label: "Finished racks" },
-    { file: "brisket-sliced.jpg",      label: "Sliced brisket" },
-    { file: "smoked-chicken.jpg",      label: "Smoked chicken" },
-    { file: "smoked-turkey.jpg",       label: "Smoked turkey" },
-    { file: "smoker-wings.jpg",        label: "Wings on the smoker" },
-    { file: "smoker-full.jpg",         label: "Smoker (full)" },
-    { file: "smoker-ribs-chicken.jpg", label: "Smoker (ribs + chicken)" },
-    { file: "whole-hog-smoker.jpg",    label: "Whole hog" },
-    { file: "sausage-boats.jpg",       label: "Sausage boats" },
-    { file: "bbq-tacos.jpg",           label: "BBQ tacos" },
-    { file: "chimichurri-sandwich.jpg", label: "Chimichurri sandwich" },
-    { file: "chimichurri-steak.jpg",   label: "Chimichurri steak (new)" },
-    { file: "pulled-pork-slaw.jpg",    label: "Pulled pork + slaw (new)" },
-  ];
+  const data = window.CONTENT;
+  if (!data) {
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      "<p style='padding:24px;font-family:sans-serif;color:#b71c2a'>content.js failed to load.</p>"
+    );
+    return;
+  }
 
-  // ===== Sidebar nav: swap active panel =====
-  const navItems = document.querySelectorAll(".navitem");
-  const panels = document.querySelectorAll(".panel");
+  // ───── Small helpers ─────
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const el = (tag, attrs = {}, ...children) => {
+    const node = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (k === "class") node.className = v;
+      else if (k === "html") node.innerHTML = v;
+      else if (k.startsWith("on") && typeof v === "function")
+        node.addEventListener(k.slice(2).toLowerCase(), v);
+      else if (v === true) node.setAttribute(k, "");
+      else if (v !== false && v != null) node.setAttribute(k, v);
+    }
+    children.flat().forEach((c) => {
+      if (c == null || c === false) return;
+      node.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
+    });
+    return node;
+  };
+  const esc = (s) => String(s ?? "");
 
+  // ───── Topbar ─────
+  $("#weekpill").textContent = esc(data.week);
+  $("#tagline").textContent = esc(data.tagline);
+
+  // ───── Sidebar ─────
+  const sidebar = $("#sidebar");
+  data.sections.forEach((section, idx) => {
+    const btn = el(
+      "button",
+      {
+        class: "navitem" + (idx === 0 ? " is-active" : ""),
+        "data-target": section.id,
+        type: "button",
+      },
+      el("span", { class: "navitem__num" }, esc(section.number)),
+      el("span", { class: "navitem__label" }, esc(section.navLabel))
+    );
+    sidebar.appendChild(btn);
+  });
+
+  // ───── Content panels ─────
+  const content = $("#content");
+
+  data.sections.forEach((section, idx) => {
+    const panel = el("article", {
+      class: "panel" + (idx === 0 ? " is-active" : ""),
+      id: section.id,
+    });
+
+    // Title
+    panel.appendChild(
+      el(
+        "h1",
+        { class: "panel__title" },
+        esc(section.titleLead) + " ",
+        el("span", { class: "accent" }, esc(section.titleAccent)),
+        "."
+      )
+    );
+    panel.appendChild(el("p", { class: "panel__sub" }, esc(section.subtitle)));
+
+    if (section.format === "checkin") {
+      panel.appendChild(renderCheckin(section));
+    } else {
+      // "post" or "story" — both use the postcard pattern
+      panel.appendChild(renderTabs(section));
+      panel.appendChild(renderCardStack(section));
+    }
+
+    content.appendChild(panel);
+  });
+
+  // ───── Renderers ─────
+  function renderCheckin(section) {
+    const wrap = el("div", { class: "checkin" });
+    (section.rows || []).forEach((row) => {
+      wrap.appendChild(
+        el(
+          "div",
+          { class: "checkin__row" },
+          el("span", { class: "checkin__label" }, esc(row.label)),
+          el("span", { class: "checkin__value" }, esc(row.value))
+        )
+      );
+    });
+    return wrap;
+  }
+
+  function renderTabs(section) {
+    const tabs = el("div", { class: "tabs" });
+    (section.items || []).forEach((item, i) => {
+      tabs.appendChild(
+        el(
+          "button",
+          {
+            class: "tab" + (i === 0 ? " is-active" : ""),
+            "data-tab": section.id + "-" + i,
+            type: "button",
+          },
+          esc(item.tabLabel)
+        )
+      );
+    });
+    return tabs;
+  }
+
+  function renderCardStack(section) {
+    const stack = el("div", { class: "card-stack" });
+    (section.items || []).forEach((item, i) => {
+      const cardKey = section.id + "-" + i;
+      const frameId = "post-" + cardKey;
+      const isStory = section.format === "story";
+
+      const card = el(
+        "div",
+        {
+          class: "postcard" + (i === 0 ? " is-active" : ""),
+          "data-card": cardKey,
+        },
+
+        el(
+          "div",
+          { class: "postcard__head" },
+          el(
+            "div",
+            null,
+            el("div", { class: "postcard__num" }, esc(item.postNumber)),
+            el("div", { class: "postcard__name" }, esc(item.postName))
+          ),
+          el(
+            "button",
+            { class: "btn-edit", type: "button" },
+            isStory ? "EDIT THIS STORY" : "EDIT THIS POST"
+          )
+        ),
+
+        el(
+          "div",
+          { class: "postwrap", "data-format": isStory ? "story" : "post" },
+          // photo picker injected here
+          buildPostFrame(frameId, isStory, item),
+          el(
+            "button",
+            { class: "btn-download", "data-target": frameId, type: "button" },
+            isStory
+              ? "DOWNLOAD STORY (1080×1920)"
+              : "DOWNLOAD POST (1080×1350)"
+          )
+        )
+      );
+      stack.appendChild(card);
+    });
+    return stack;
+  }
+
+  function buildPostFrame(frameId, isStory, item) {
+    const copyKids = [];
+    if (isStory && item.kicker) {
+      copyKids.push(el("div", { class: "storykicker" }, esc(item.kicker)));
+    }
+    copyKids.push(el("h2", { class: "postframe__head" }, esc(item.headline)));
+    copyKids.push(el("p", { class: "postframe__sub" }, esc(item.sub)));
+
+    return el(
+      "div",
+      {
+        class: "postframe" + (isStory ? " postframe--story" : ""),
+        id: frameId,
+      },
+      el("img", { class: "postframe__bg", src: "assets/" + item.photo, alt: "" }),
+      el("div", { class: "postframe__overlay" }),
+      el("img", {
+        class: "postframe__logo",
+        src: "assets/puds-pit-logo-transparent.png",
+        alt: "Pud's Pit",
+      }),
+      el(
+        "div",
+        {
+          class:
+            "postframe__copy" + (isStory ? " postframe__copy--story" : ""),
+        },
+        copyKids
+      )
+    );
+  }
+
+  // ───── Wire up navigation ─────
+  const navItems = $$(".navitem");
+  const panels = $$(".panel");
   navItems.forEach((item) => {
     item.addEventListener("click", () => {
       const target = item.dataset.target;
@@ -37,10 +214,10 @@
     });
   });
 
-  // ===== Tab strips: each .tabs row swaps cards inside the same .panel =====
-  document.querySelectorAll(".panel").forEach((panel) => {
-    const tabs = panel.querySelectorAll(".tab");
-    const cards = panel.querySelectorAll(".postcard");
+  // ───── Wire up tab strips ─────
+  $$(".panel").forEach((panel) => {
+    const tabs = $$(".tab", panel);
+    const cards = $$(".postcard", panel);
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         const key = tab.dataset.tab;
@@ -52,55 +229,42 @@
     });
   });
 
-  // ===== Inject a photo picker above every postframe =====
-  document.querySelectorAll(".postwrap").forEach((wrap) => {
-    const bg = wrap.querySelector(".postframe__bg");
+  // ───── Inject a photo picker above every postframe ─────
+  $$(".postwrap").forEach((wrap) => {
+    const bg = $(".postframe__bg", wrap);
     if (!bg) return;
-
-    // Current photo (basename) from the src
     const currentFile = bg.getAttribute("src").split("/").pop();
 
-    // Build the picker
-    const pickerWrap = document.createElement("div");
-    pickerWrap.className = "bgpicker-wrap";
-
-    const label = document.createElement("label");
-    label.textContent = "Photo";
-
-    const select = document.createElement("select");
-    select.className = "bgpicker";
-    PHOTOS.forEach((p) => {
-      const opt = document.createElement("option");
-      opt.value = p.file;
-      opt.textContent = p.label;
+    const select = el("select", { class: "bgpicker" });
+    (data.photos || []).forEach((p) => {
+      const opt = el("option", { value: p.file }, esc(p.label));
       if (p.file === currentFile) opt.selected = true;
       select.appendChild(opt);
     });
-
-    // If the current file isn't in PHOTOS (e.g. someone hand-edited), include it
-    if (!PHOTOS.find((p) => p.file === currentFile)) {
-      const opt = document.createElement("option");
-      opt.value = currentFile;
-      opt.textContent = currentFile + " (current)";
-      opt.selected = true;
+    // include current file if it's not in the photos list
+    if (!data.photos.find((p) => p.file === currentFile)) {
+      const opt = el(
+        "option",
+        { value: currentFile, selected: true },
+        currentFile + " (current)"
+      );
       select.insertBefore(opt, select.firstChild);
     }
-
     select.addEventListener("change", () => {
       bg.setAttribute("src", "assets/" + select.value);
     });
 
-    pickerWrap.appendChild(label);
-    pickerWrap.appendChild(select);
-
-    // Insert before the postframe
-    const frame = wrap.querySelector(".postframe");
-    wrap.insertBefore(pickerWrap, frame);
+    const pickerWrap = el(
+      "div",
+      { class: "bgpicker-wrap" },
+      el("label", null, "Photo"),
+      select
+    );
+    wrap.insertBefore(pickerWrap, $(".postframe", wrap));
   });
 
-  // ===== Download buttons: render the postframe to PNG =====
-  // Feed posts: 1080x1350. Stories: 1080x1920.
-  document.querySelectorAll(".btn-download").forEach((btn) => {
+  // ───── Download buttons ─────
+  $$(".btn-download").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const targetId = btn.dataset.target;
       const node = document.getElementById(targetId);
@@ -111,7 +275,6 @@
       btn.textContent = "Rendering…";
 
       try {
-        // Scale so the captured image is 1080 wide regardless of viewport
         const rect = node.getBoundingClientRect();
         const scale = 1080 / rect.width;
 
@@ -124,7 +287,7 @@
         });
 
         const link = document.createElement("a");
-        link.download = `puds-pit-${targetId}.png`;
+        link.download = "puds-pit-" + targetId + ".png";
         link.href = canvas.toDataURL("image/png");
         document.body.appendChild(link);
         link.click();
