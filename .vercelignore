@@ -1,0 +1,13 @@
+# Non-web source files that should never ship in the deploy
+*.CR2
+*.cr2
+*.MOV
+*.mov
+*.MP4
+*.mp4
+*.HEIC
+*.heic
+server.js
+.replit
+README.md
+__*.cjs

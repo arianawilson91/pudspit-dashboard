@@ -4,3 +4,14 @@ node_modules/
 .vscode/
 .idea/
 .vercel
+
+# Non-web source files — keep raws/video out of the repo and deploy
+*.CR2
+*.cr2
+*.MOV
+*.mov
+*.MP4
+*.mp4
+*.HEIC
+*.heic
+__*.cjs
