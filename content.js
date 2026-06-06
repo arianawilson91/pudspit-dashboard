@@ -409,6 +409,74 @@ window.CONTENT = {
         },
       ],
     },
+
+    // ─────────────────────────────────────────────────
+    // 08 · AUDIO PLAYBOOK — trending audio changes weekly,
+    // so this teaches the METHOD + audio-by-reel-type. The
+    // specific song examples rotate — always verify in-app.
+    // ─────────────────────────────────────────────────
+    {
+      id: "audio",
+      number: "08",
+      navLabel: "Audio Playbook",
+      titleLead: "AUDIO",
+      titleAccent: "PLAYBOOK",
+      subtitle:
+        "Trending audio is half of why a reel gets pushed. Trends rotate weekly — learn the method, match the sound to the reel, and grab the live trending version in the app.",
+      format: "checkin",
+      rows: [
+        {
+          label: "How to find what's trending",
+          value:
+            "In the app: Reels → tap any reel's audio name. A little ↗ rising-arrow icon = it's trending right now. Browse, then tap Save on 5–10 sounds each week.",
+        },
+        {
+          label: "Pick FRESH, not oversaturated",
+          value:
+            "Aim for sounds with roughly under 25k–50k uses — enough to be rising, not so many it's already everywhere. Riding a sound early gets you more reach.",
+        },
+        {
+          label: "Business-account rule (important)",
+          value:
+            "Business/creator accounts can only use sounds marked \"Original audio\" or cleared for commercial use. If a song is greyed out, that's why — use the Reels audio browser, which only shows what you're allowed to use.",
+        },
+        {
+          label: "ASMR reels → use the REAL sound",
+          value:
+            "Smoker lid open, the slice, the sauce mop: let the sizzle/crackle/knife carry it with no music (or music very low). Post it as \"Original audio\" — Instagram pushes original audio too.",
+        },
+        {
+          label: "Hype / food montage → upbeat beat",
+          value:
+            "Fast cuts of the food? Use a trending upbeat hip-hop, phonk, saxophone, or amapiano beat. High energy matches the quick cuts.",
+        },
+        {
+          label: "Family / story reel → warm or moody",
+          value:
+            "Behind-the-scenes, the 4am grind, the family: pair with a warm or slightly emotional trending track, or use a voiceover over soft music.",
+        },
+        {
+          label: "Save sounds the moment you hear them",
+          value:
+            "Scrolling and a sound is everywhere? Tap the audio → Save. Build a little library so when you film at the truck you already have 5 trending options ready.",
+        },
+        {
+          label: "Current examples (verify the ↗ in-app)",
+          value:
+            "Recipe/reveal: \"SPEND DAT SAX\" (saxophone). Product-appears reveal: Megan Thee Stallion \"hot girl dinner.\" Polished/nostalgic edit: a moody track like Ariana Grande \"Hate That I Made You Love Me.\" These rotate — confirm they're still trending AND available to your account.",
+        },
+        {
+          label: "Match audio to the hook, not the other way",
+          value:
+            "Film the reel first with a strong first-second hook, then pick a trending sound that fits the vibe. Don't force a great sound onto a weak shot.",
+        },
+        {
+          label: "One sound, one reel",
+          value:
+            "Don't reuse the same trending sound on back-to-back posts. Vary it so your feed doesn't feel repetitive and you ride multiple trends.",
+        },
+      ],
+    },
   ],
 
   // ─────────────────────────────────────────────────
