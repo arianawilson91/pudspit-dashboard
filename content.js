@@ -331,6 +331,84 @@ window.CONTENT = {
         },
       ],
     },
+
+    // ─────────────────────────────────────────────────
+    // 07 · GROWTH PLAYBOOK — the weekly checklist that
+    // grows the account. Modeled on how food trucks like
+    // @moschickensmash hit 5k followers on a few reels.
+    // ─────────────────────────────────────────────────
+    {
+      id: "growth",
+      number: "07",
+      navLabel: "Growth Playbook",
+      titleLead: "GROWTH",
+      titleAccent: "PLAYBOOK",
+      subtitle:
+        "The weekly moves that actually grow the account. Reels reach strangers; photos reach fans. Do these every week.",
+      format: "checkin",
+      rows: [
+        {
+          label: "Post 3–5 reels/week",
+          value:
+            "Reels get shown to non-followers — that's how new people find you. Photos mostly reach current fans. Reels are the growth engine.",
+        },
+        {
+          label: "Hook in 1 second",
+          value:
+            "Lead with the smoke billowing off the lid, a cheese pull, or the first slice. If the first second isn't a scroll-stopper, the reel dies.",
+        },
+        {
+          label: "On-screen text hook",
+          value:
+            "Add a bold line in the first frame: \"POV: best ribs in SWFL\" or \"12 hours for THIS.\" Text + visual hook together.",
+        },
+        {
+          label: "Trending audio",
+          value:
+            "Use a sound that's trending that week (look for the little ↗ arrow in Reels). Trending audio = more pushes from the algorithm.",
+        },
+        {
+          label: "Tag your location EVERY post",
+          value:
+            "Tag Fort Myers / Cape Coral / Estero or the exact brewery. Instagram auto-pushes geotagged posts to locals nearby.",
+        },
+        {
+          label: "DM 3 local food bloggers/week",
+          value:
+            "One SWFL food-Instagram feature beats 50 of your own posts. Invite them to the truck. This is the single biggest growth lever.",
+        },
+        {
+          label: "Reply to every comment & DM",
+          value:
+            "Fast replies signal the algorithm AND build regulars. Aim to reply within the first hour a post goes up.",
+        },
+        {
+          label: "Lead with the family",
+          value:
+            "People follow people. Scott, Wendy, Ashlan, Kyler + veteran-owned story = the loyalty hook competitors can't copy.",
+        },
+        {
+          label: "Post at peak times",
+          value:
+            "Lunch (11a–1p) and dinner (5–7p) on days you're open. Drop the \"where to find us\" post the night before.",
+        },
+        {
+          label: "One clear CTA every post",
+          value:
+            "Tell them exactly what to do: \"Pull up Saturday, Estero Village, 11–7\" or \"DM us to book catering.\" Never make them guess.",
+        },
+        {
+          label: "Hashtags that work",
+          value:
+            "#swflfood #fortmyerseats #capecoralfood #bbq #foodtruck #swfl — local + category tags, not generic #yummy spam.",
+        },
+        {
+          label: "Repost fan content",
+          value:
+            "When a customer tags you, reshare it to your story and thank them. Free content + makes regulars feel seen.",
+        },
+      ],
+    },
   ],
 
   // ─────────────────────────────────────────────────
