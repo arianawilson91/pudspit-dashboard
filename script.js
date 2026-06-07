@@ -273,17 +273,32 @@
       };
     });
     try {
-      localStorage.setItem("pudspit:edits", JSON.stringify(edits));
+      // Tag edits to the current week so a NEW week's content.js always wins
+      // (otherwise saved edits would silently mask freshly-published content).
+      localStorage.setItem(
+        "pudspit:edits",
+        JSON.stringify({ week: data.week, edits })
+      );
     } catch (_) {
       /* localStorage full or disabled — silently ignore */
     }
   }
 
   function applyEditsFromLocalStorage() {
-    let edits;
+    let stored;
     try {
-      edits = JSON.parse(localStorage.getItem("pudspit:edits") || "{}");
+      stored = JSON.parse(localStorage.getItem("pudspit:edits") || "null");
     } catch (_) {
+      return;
+    }
+    if (!stored) return;
+    // Back-compat: old format was a flat {id: edit} map with no week tag.
+    const savedWeek = stored.week;
+    const edits = stored.edits || stored;
+    // If the saved edits are from a different week than what content.js now
+    // ships, they're stale — drop them so the new week renders clean.
+    if (savedWeek !== data.week) {
+      try { localStorage.removeItem("pudspit:edits"); } catch (_) {}
       return;
     }
     Object.entries(edits).forEach(([id, e]) => {
