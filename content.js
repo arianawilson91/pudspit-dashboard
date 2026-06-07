@@ -460,11 +460,37 @@ window.CONTENT = {
           value:
             "Scrolling and a sound is everywhere? Tap the audio → Save. Build a little library so when you film at the truck you already have 5 trending options ready.",
         },
+        // >>> TRENDING-AUDIO:START (auto-refreshed weekly — do not hand-edit between markers) >>>
         {
-          label: "Current examples (verify the ↗ in-app)",
+          label: "Trending now · updated Jun 7, 2026",
           value:
-            "Recipe/reveal: \"SPEND DAT SAX\" (saxophone). Product-appears reveal: Megan Thee Stallion \"hot girl dinner.\" Polished/nostalgic edit: a moody track like Ariana Grande \"Hate That I Made You Love Me.\" These rotate — confirm they're still trending AND available to your account.",
+            "Picks below are mapped to Pud's Pit reel types. They rotate weekly — always confirm the ↗ arrow in-app and that the sound isn't greyed out for your account.",
         },
+        {
+          label: "SPEND DAT SAX — Corey Staggers",
+          value: "Smooth saxophone. Best for food: the glaze pour, the slice, plating reveals.",
+        },
+        {
+          label: "\"Hot girl dinner\" — Megan Thee Stallion (original audio)",
+          value: "Playful \"it appears\" effect — food conjures into frame. Original audio, so safe on business accounts.",
+        },
+        {
+          label: "Game Time — Future & Tyla",
+          value: "High energy (World Cup moment). Hype montage: smoker reveal, fast cuts of the spread.",
+        },
+        {
+          label: "Ring Ring Ring — Tyler, The Creator",
+          value: "Retro funk. Before/after transition: raw rack → sliced & sauced.",
+        },
+        {
+          label: "DAISIES — Justin Bieber",
+          value: "Chill, cozy. Low-and-slow prep, the 4am grind, cooking b-roll.",
+        },
+        {
+          label: "Hate That I Made You Love Me — Ariana Grande",
+          value: "Moody, reflective. Family/story reel or the \"why we do this\" post.",
+        },
+        // <<< TRENDING-AUDIO:END <<<
         {
           label: "Match audio to the hook, not the other way",
           value:
