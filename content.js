@@ -462,25 +462,25 @@ window.CONTENT = {
         },
         // >>> TRENDING-AUDIO:START (auto-refreshed weekly — do not hand-edit between markers) >>>
         {
-          label: "Trending now · updated Jun 7, 2026",
+          label: "Trending now · week of Jun 8, 2026",
           value:
             "Picks below are mapped to Pud's Pit reel types. They rotate weekly — always confirm the ↗ arrow in-app and that the sound isn't greyed out for your account.",
         },
         {
           label: "SPEND DAT SAX — Corey Staggers",
-          value: "Smooth saxophone. Best for food: the glaze pour, the slice, plating reveals.",
+          value: "Smooth saxophone. Food reveal: the glaze pour, the slice, the plate.",
         },
         {
           label: "\"Hot girl dinner\" — Megan Thee Stallion (original audio)",
-          value: "Playful \"it appears\" effect — food conjures into frame. Original audio, so safe on business accounts.",
+          value: "Playful \"it appears\" effect — make the food conjure into frame for \"what's on the truck.\" Original audio = safe on business accounts.",
         },
         {
-          label: "Game Time — Future & Tyla",
-          value: "High energy (World Cup moment). Hype montage: smoker reveal, fast cuts of the spread.",
+          label: "EVERYTHING HALLELUJAH — Justin Bieber",
+          value: "List format: name each menu item one by one — \"The Pit… Pull Piggy… Big Rack…\" — each line a \"hallelujah.\" Perfect menu rundown.",
         },
         {
-          label: "Ring Ring Ring — Tyler, The Creator",
-          value: "Retro funk. Before/after transition: raw rack → sliced & sauced.",
+          label: "Beat It — Michael Jackson",
+          value: "\"I Am Home\" trend — strut up to the truck and confess it's your real happy place. Arrival / hype shot.",
         },
         {
           label: "DAISIES — Justin Bieber",
@@ -489,6 +489,10 @@ window.CONTENT = {
         {
           label: "Hate That I Made You Love Me — Ariana Grande",
           value: "Moody, reflective. Family/story reel or the \"why we do this\" post.",
+        },
+        {
+          label: "Heads up — business accounts",
+          value: "The major-label tracks (HALLELUJAH, Beat It, DAISIES, Ariana) are often greyed out on business accounts. \"Hot girl dinner\" (original audio) is the safe bet; for the rest, use a Creator account or pick what's not greyed out in-app.",
         },
         // <<< TRENDING-AUDIO:END <<<
         {
