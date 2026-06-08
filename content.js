@@ -562,10 +562,15 @@ window.CONTENT = {
       ],
       // "Leave a review" call-to-action: links + scannable QR codes
       cta: {
-        heading: "Loved it? Tell the world.",
+        heading: "Loved it? Leave us a review.",
         note:
-          "Follow, tag us, or scan at the truck — we reshare every shout-out. Free credibility.",
+          "Scan to drop a Google review (the big one — it's what shows up when people search BBQ near them), or follow & tag us. We reshare every shout-out.",
         links: [
+          {
+            label: "Leave a Google review",
+            url: "https://www.google.com/search?q=Pud%27s+Pit+BBQ+Reviews",
+            plat: "google",
+          },
           { label: "@puds.pit.bbq", url: "https://instagram.com/puds.pit.bbq", plat: "ig" },
           {
             label: "Pud's Pit on Facebook",
@@ -574,11 +579,18 @@ window.CONTENT = {
           },
         ],
         qrs: [
+          { img: "qr-google.png", caption: "★ Scan to review us on Google" },
           { img: "qr-instagram.png", caption: "Scan to follow on Instagram" },
           { img: "qr-facebook.png", caption: "Scan to find us on Facebook" },
         ],
         tip:
-          "For ⭐ star reviews, set up a free Google Business Profile (or a Facebook Page) and add that link here — that's where star ratings live.",
+          "Google reviews are the highest-value — they lift how you rank when people search “BBQ near me.” Ask every happy customer to scan the Google code while they're still at the truck.",
+        reviewCard: {
+          qr: "qr-google.png",
+          kicker: "LOVED IT?",
+          headline: "Scan to review us on Google",
+          foot: "Pud's Pit BBQ · @puds.pit.bbq",
+        },
       },
     },
   ],

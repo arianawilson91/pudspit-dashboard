@@ -132,6 +132,40 @@
     }
 
     if (cta.tip) card.appendChild(el("p", { class: "cta__tip" }, esc(cta.tip)));
+
+    // Printable "Scan to review us" card for the truck window
+    if (cta.reviewCard) {
+      const rc = cta.reviewCard;
+      card.appendChild(
+        el(
+          "div",
+          { class: "cta__cardwrap" },
+          el(
+            "div",
+            { class: "reviewcard", id: "review-card" },
+            el("img", {
+              class: "reviewcard__logo",
+              src: "assets/puds-pit-logo-transparent.png",
+              alt: "Pud's Pit",
+            }),
+            el("div", { class: "reviewcard__kicker" }, esc(rc.kicker || "LOVED IT?")),
+            el("div", { class: "reviewcard__stars" }, "★★★★★"),
+            el("h3", { class: "reviewcard__head" }, esc(rc.headline || "Scan to review us")),
+            el("img", {
+              class: "reviewcard__qr",
+              src: "assets/" + rc.qr,
+              alt: "Scan to review",
+            }),
+            rc.foot ? el("div", { class: "reviewcard__foot" }, esc(rc.foot)) : false
+          ),
+          el(
+            "button",
+            { class: "btn-download", "data-target": "review-card", type: "button" },
+            el("span", { class: "btn-download__txt" }, "DOWNLOAD REVIEW CARD (PRINT)")
+          )
+        )
+      );
+    }
     return card;
   }
 

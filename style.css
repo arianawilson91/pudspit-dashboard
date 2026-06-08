@@ -463,6 +463,9 @@ html, body {
 .plat--fb {
   background: #1877f2;
 }
+.plat--google {
+  background: #4285f4;
+}
 .btn-download__txt { letter-spacing: 0.14em; }
 .btn-download:hover {
   background: var(--pp-red-deep);
@@ -611,6 +614,68 @@ html, body {
   border-top: 1px solid rgba(243, 236, 221, 0.15);
   padding-top: 18px;
   max-width: 720px;
+}
+
+/* Printable "Scan to review us" card */
+.cta__cardwrap {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.reviewcard {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1080 / 1350;
+  background: var(--pp-cream);
+  border: 10px solid var(--pp-red);
+  box-sizing: border-box;
+  padding: 8% 9%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  container-type: inline-size;
+}
+.reviewcard__logo { width: 62%; margin-bottom: 6%; }
+.reviewcard__kicker {
+  font-family: var(--font-display);
+  font-size: 9cqw;
+  letter-spacing: -0.01em;
+  color: var(--pp-charcoal);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.reviewcard__stars {
+  color: var(--pp-red);
+  font-size: 8cqw;
+  letter-spacing: 0.1em;
+  margin: 2% 0 4%;
+}
+.reviewcard__head {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 7cqw;
+  line-height: 1.1;
+  margin: 0 0 6%;
+  color: var(--pp-charcoal);
+}
+.reviewcard__qr {
+  width: 58%;
+  height: auto;
+  display: block;
+}
+.reviewcard__foot {
+  margin-top: 6%;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 3.6cqw;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pp-charcoal);
 }
 
 /* ===== EDIT MODE ===== */
