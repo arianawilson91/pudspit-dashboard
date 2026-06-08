@@ -452,6 +452,20 @@ html, body {
   opacity: 0.6;
   cursor: progress;
 }
+/* Secondary "square" export — outline so it doesn't compete with the primary */
+.btn-download--square {
+  background: transparent;
+  color: var(--pp-red);
+  border: 1.5px solid var(--pp-red);
+  box-shadow: none;
+  padding: 13px 28px;
+  margin-top: -10px; /* sit closer under the primary download button */
+}
+.btn-download--square:hover {
+  background: rgba(230, 57, 70, 0.08);
+  color: var(--pp-red-deep);
+  border-color: var(--pp-red-deep);
+}
 
 /* ===== SOCIAL CHECK-IN PANEL ===== */
 .checkin {

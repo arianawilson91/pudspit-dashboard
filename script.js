@@ -163,6 +163,16 @@
             isStory
               ? "DOWNLOAD STORY (1080×1920)"
               : "DOWNLOAD POST (1080×1350)"
+          ),
+          el(
+            "button",
+            {
+              class: "btn-download btn-download--square",
+              "data-target": frameId,
+              "data-square": "1",
+              type: "button",
+            },
+            "DOWNLOAD SQUARE (1080×1080)"
           )
         )
       );
@@ -520,40 +530,96 @@
     return JSON.stringify(value);
   }
 
-  // ───── Download buttons ─────
+  // ───── Capture a node to a PNG sized to 1080px wide ─────
+  async function captureToPng(node, filename) {
+    const rect = node.getBoundingClientRect();
+    const canvas = await html2canvas(node, {
+      backgroundColor: "#1a1a1a",
+      scale: 1080 / rect.width,
+      useCORS: true,
+      logging: false,
+      allowTaint: true,
+    });
+    const link = document.createElement("a");
+    link.download = filename;
+    link.href = canvas.toDataURL("image/png");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // Build an off-screen 1:1 (square) version of a post for Facebook-feed
+  // exports that never crop. Re-uses the live photo + caption + bottom scrim.
+  function buildSquareClone(frame) {
+    const w = Math.round(frame.getBoundingClientRect().width) || 540;
+    const clone = document.createElement("div");
+    clone.className = "postframe"; // inherits container-type, radius, overflow
+    Object.assign(clone.style, {
+      position: "fixed",
+      left: "-10000px",
+      top: "0",
+      width: w + "px",
+      height: w + "px",
+      maxWidth: "none",
+      aspectRatio: "auto",
+    });
+
+    const bg = frame.querySelector(".postframe__bg");
+    if (bg) clone.appendChild(bg.cloneNode(true));
+    // Always the feed (bottom-up) scrim on a square — caption sits at the bottom
+    const ov = document.createElement("div");
+    ov.className = "postframe__overlay";
+    clone.appendChild(ov);
+    const logo = frame.querySelector(".postframe__logo");
+    if (logo) clone.appendChild(logo.cloneNode(true));
+
+    // Bottom-anchored copy (not the centered story layout)
+    const copy = document.createElement("div");
+    copy.className = "postframe__copy";
+    const kicker = frame.querySelector(".storykicker");
+    if (kicker) {
+      const k = document.createElement("div");
+      k.className = "storykicker";
+      k.textContent = kicker.textContent;
+      copy.appendChild(k);
+    }
+    const head = document.createElement("h2");
+    head.className = "postframe__head";
+    head.textContent = frame.querySelector(".postframe__head")?.textContent || "";
+    copy.appendChild(head);
+    const sub = document.createElement("p");
+    sub.className = "postframe__sub";
+    sub.textContent = frame.querySelector(".postframe__sub")?.textContent || "";
+    copy.appendChild(sub);
+    clone.appendChild(copy);
+
+    document.body.appendChild(clone);
+    return clone;
+  }
+
+  // ───── Download buttons (4:5 / 9:16 + square 1:1) ─────
   $$(".btn-download").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const targetId = btn.dataset.target;
       const node = document.getElementById(targetId);
       if (!node) return;
+      const isSquare = btn.dataset.square === "1";
 
       const originalLabel = btn.textContent;
       btn.disabled = true;
       btn.textContent = "Rendering…";
 
+      let clone = null;
       try {
-        const rect = node.getBoundingClientRect();
-        const scale = 1080 / rect.width;
-
-        const canvas = await html2canvas(node, {
-          backgroundColor: "#1a1a1a",
-          scale: scale,
-          useCORS: true,
-          logging: false,
-          allowTaint: true,
-        });
-
-        const link = document.createElement("a");
-        link.download = "puds-pit-" + targetId + ".png";
-        link.href = canvas.toDataURL("image/png");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        const captureNode = isSquare ? (clone = buildSquareClone(node)) : node;
+        const suffix = isSquare ? "-square" : "";
+        await captureToPng(captureNode, "puds-pit-" + targetId + suffix + ".png");
         btn.textContent = "Downloaded ✓";
       } catch (err) {
         console.error("[puds-pit-dashboard] Download failed:", err);
         btn.textContent = "Try again";
       } finally {
+        if (clone && clone.parentNode) clone.parentNode.removeChild(clone);
         setTimeout(() => {
           btn.disabled = false;
           btn.textContent = originalLabel;
