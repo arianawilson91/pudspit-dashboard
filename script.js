@@ -157,23 +157,35 @@
           { class: "postwrap", "data-format": isStory ? "story" : "post" },
           // photo picker injected here
           buildPostFrame(frameId, isStory, item),
+          // Primary export: 4:5 feed post, or 9:16 story — both work on IG + FB
           el(
             "button",
             { class: "btn-download", "data-target": frameId, type: "button" },
-            isStory
-              ? "DOWNLOAD STORY (1080×1920)"
-              : "DOWNLOAD POST (1080×1350)"
+            el("span", { class: "plat plat--ig" }, "IG"),
+            el("span", { class: "plat plat--fb" }, "FB"),
+            el(
+              "span",
+              { class: "btn-download__txt" },
+              isStory ? "Story · 1080×1920" : "Feed post · 1080×1350"
+            )
           ),
-          el(
-            "button",
-            {
-              class: "btn-download btn-download--square",
-              "data-target": frameId,
-              "data-square": "1",
-              type: "button",
-            },
-            "DOWNLOAD SQUARE (1080×1080)"
-          )
+          // Square export only makes sense for feed posts (stories are vertical on both)
+          !isStory &&
+            el(
+              "button",
+              {
+                class: "btn-download btn-download--square",
+                "data-target": frameId,
+                "data-square": "1",
+                type: "button",
+              },
+              el("span", { class: "plat plat--fb" }, "FB"),
+              el(
+                "span",
+                { class: "btn-download__txt" },
+                "Facebook square · 1080×1080"
+              )
+            )
         )
       );
       stack.appendChild(card);
@@ -605,24 +617,26 @@
       if (!node) return;
       const isSquare = btn.dataset.square === "1";
 
-      const originalLabel = btn.textContent;
+      // Update only the label span so the IG/FB chips survive the status swap
+      const labelEl = btn.querySelector(".btn-download__txt") || btn;
+      const originalLabel = labelEl.textContent;
       btn.disabled = true;
-      btn.textContent = "Rendering…";
+      labelEl.textContent = "Rendering…";
 
       let clone = null;
       try {
         const captureNode = isSquare ? (clone = buildSquareClone(node)) : node;
         const suffix = isSquare ? "-square" : "";
         await captureToPng(captureNode, "puds-pit-" + targetId + suffix + ".png");
-        btn.textContent = "Downloaded ✓";
+        labelEl.textContent = "Downloaded ✓";
       } catch (err) {
         console.error("[puds-pit-dashboard] Download failed:", err);
-        btn.textContent = "Try again";
+        labelEl.textContent = "Try again";
       } finally {
         if (clone && clone.parentNode) clone.parentNode.removeChild(clone);
         setTimeout(() => {
           btn.disabled = false;
-          btn.textContent = originalLabel;
+          labelEl.textContent = originalLabel;
         }, 1400);
       }
     });

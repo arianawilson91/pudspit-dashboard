@@ -431,7 +431,7 @@ html, body {
   color: var(--pp-cream);
   border: 0;
   border-radius: 999px;
-  padding: 16px 32px;
+  padding: 16px 28px;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 13px;
@@ -440,7 +440,30 @@ html, body {
   cursor: pointer;
   transition: background 120ms ease, transform 120ms ease;
   box-shadow: 0 4px 18px rgba(230, 57, 70, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
+/* Platform tags so it's obvious where each export goes */
+.plat {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 3px 7px;
+  border-radius: 6px;
+  line-height: 1;
+  color: #fff;
+  flex-shrink: 0;
+}
+.plat--ig {
+  background: linear-gradient(45deg, #f09433, #dc2743 45%, #bc1888);
+}
+.plat--fb {
+  background: #1877f2;
+}
+.btn-download__txt { letter-spacing: 0.14em; }
 .btn-download:hover {
   background: var(--pp-red-deep);
   transform: translateY(-1px);
