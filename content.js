@@ -524,16 +524,16 @@ window.CONTENT = {
       titleLead: "CUSTOMER",
       titleAccent: "REVIEWS",
       subtitle:
-        "Real reviews are your best ad. Swap these example quotes with actual customer words, download, and post. Then point new customers to leave their own below.",
+        "Real reviews are your best ad. Review 1 is a real one — download it and post. Swap the example quotes (2–4) with more real reviews as they come in, then point new customers to leave their own below.",
       format: "post",
       items: [
         {
-          tabLabel: "Review 1",
+          tabLabel: "Gigi M. ★",
           postNumber: "REVIEW 01",
-          postName: "Ribs review",
-          photo: "ribs-glazed.jpg",
-          headline: "“Best ribs in Southwest Florida, hands down.”",
-          sub: "— Sarah M. · ★★★★★  (example — swap with a real review)",
+          postName: "The Pit sandwich (real review)",
+          photo: "chimichurri-steak.jpg",
+          headline: "“Can’t recommend you guys highly enough!”",
+          sub: "— Gigi Maisonet · ★★★★★",
         },
         {
           tabLabel: "Review 2",
