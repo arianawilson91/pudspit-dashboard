@@ -522,6 +522,97 @@ html, body {
   color: var(--pp-charcoal);
 }
 
+/* ===== REVIEWS "LEAVE A REVIEW" CTA ===== */
+.cta {
+  margin-top: 36px;
+  background: var(--pp-espresso);
+  color: var(--pp-cream);
+  border-radius: 10px;
+  border-left: 6px solid var(--pp-red);
+  padding: 32px;
+}
+.cta__head {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 38px);
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  color: var(--pp-cream);
+}
+.cta__note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.4;
+  margin: 0 0 22px;
+  color: var(--pp-cream);
+  max-width: 640px;
+}
+.cta__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.cta__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  background: rgba(243, 236, 221, 0.07);
+  border: 1.5px solid rgba(243, 236, 221, 0.3);
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--pp-cream);
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.cta__link:hover {
+  background: rgba(243, 236, 221, 0.16);
+  border-color: var(--pp-cream);
+}
+.cta__qrs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.cta__qr {
+  margin: 0;
+  text-align: center;
+}
+.cta__qr img {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  background: var(--pp-cream);
+  padding: 8px;
+  display: block;
+}
+.cta__qr figcaption {
+  margin-top: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pp-cream);
+  opacity: 0.85;
+}
+.cta__tip {
+  margin: 24px 0 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--pp-cream);
+  opacity: 0.7;
+  border-top: 1px solid rgba(243, 236, 221, 0.15);
+  padding-top: 18px;
+  max-width: 720px;
+}
+
 /* ===== EDIT MODE ===== */
 .postframe.is-editing {
   outline: 3px dashed var(--pp-red);

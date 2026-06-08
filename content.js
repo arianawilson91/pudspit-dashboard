@@ -509,6 +509,78 @@ window.CONTENT = {
         },
       ],
     },
+
+    // ─────────────────────────────────────────────────
+    // 09 · REVIEWS — turn real customer reviews into
+    // shareable credibility posts, + a "leave a review"
+    // CTA with links and scannable QR codes.
+    // NOTE: the quotes below are EXAMPLES — replace them
+    // with real customer reviews before posting.
+    // ─────────────────────────────────────────────────
+    {
+      id: "reviews",
+      number: "09",
+      navLabel: "Reviews",
+      titleLead: "CUSTOMER",
+      titleAccent: "REVIEWS",
+      subtitle:
+        "Real reviews are your best ad. Swap these example quotes with actual customer words, download, and post. Then point new customers to leave their own below.",
+      format: "post",
+      items: [
+        {
+          tabLabel: "Review 1",
+          postNumber: "REVIEW 01",
+          postName: "Ribs review",
+          photo: "ribs-glazed.jpg",
+          headline: "“Best ribs in Southwest Florida, hands down.”",
+          sub: "— Sarah M. · ★★★★★  (example — swap with a real review)",
+        },
+        {
+          tabLabel: "Review 2",
+          postNumber: "REVIEW 02",
+          postName: "Brisket review",
+          photo: "brisket-sliced.jpg",
+          headline: "“The brisket melts in your mouth. Worth every mile.”",
+          sub: "— James T. · ★★★★★  (example — swap with a real review)",
+        },
+        {
+          tabLabel: "Review 3",
+          postNumber: "REVIEW 03",
+          postName: "Catering review",
+          photo: "whole-hog-smoker.jpg",
+          headline: "“Booked them for our wedding — guests still rave about it.”",
+          sub: "— The Riveras · ★★★★★  (example — swap with a real review)",
+        },
+        {
+          tabLabel: "Review 4",
+          postNumber: "REVIEW 04",
+          postName: "Family review",
+          photo: "smoked-chicken.jpg",
+          headline: "“Real-deal BBQ from the nicest family. Our weekend tradition.”",
+          sub: "— Mike D. · ★★★★★  (example — swap with a real review)",
+        },
+      ],
+      // "Leave a review" call-to-action: links + scannable QR codes
+      cta: {
+        heading: "Loved it? Tell the world.",
+        note:
+          "Follow, tag us, or scan at the truck — we reshare every shout-out. Free credibility.",
+        links: [
+          { label: "@puds.pit.bbq", url: "https://instagram.com/puds.pit.bbq", plat: "ig" },
+          {
+            label: "Pud's Pit on Facebook",
+            url: "https://www.facebook.com/profile.php?id=61578196155729",
+            plat: "fb",
+          },
+        ],
+        qrs: [
+          { img: "qr-instagram.png", caption: "Scan to follow on Instagram" },
+          { img: "qr-facebook.png", caption: "Scan to find us on Facebook" },
+        ],
+        tip:
+          "For ⭐ star reviews, set up a free Google Business Profile (or a Facebook Page) and add that link here — that's where star ratings live.",
+      },
+    },
   ],
 
   // ─────────────────────────────────────────────────

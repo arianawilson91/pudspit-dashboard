@@ -85,8 +85,55 @@
       panel.appendChild(renderCardStack(section));
     }
 
+    // Optional "leave a review" CTA (links + QR codes)
+    if (section.cta) panel.appendChild(renderCta(section.cta));
+
     content.appendChild(panel);
   });
+
+  function renderCta(cta) {
+    const card = el("div", { class: "cta" });
+    if (cta.heading) card.appendChild(el("h3", { class: "cta__head" }, esc(cta.heading)));
+    if (cta.note) card.appendChild(el("p", { class: "cta__note" }, esc(cta.note)));
+
+    if (cta.links && cta.links.length) {
+      const row = el("div", { class: "cta__links" });
+      cta.links.forEach((lnk) => {
+        row.appendChild(
+          el(
+            "a",
+            {
+              class: "cta__link",
+              href: lnk.url,
+              target: "_blank",
+              rel: "noopener noreferrer",
+            },
+            lnk.plat ? el("span", { class: "plat plat--" + lnk.plat }, lnk.plat.toUpperCase()) : false,
+            el("span", null, esc(lnk.label))
+          )
+        );
+      });
+      card.appendChild(row);
+    }
+
+    if (cta.qrs && cta.qrs.length) {
+      const grid = el("div", { class: "cta__qrs" });
+      cta.qrs.forEach((q) => {
+        grid.appendChild(
+          el(
+            "figure",
+            { class: "cta__qr" },
+            el("img", { src: "assets/" + q.img, alt: esc(q.caption || "QR code") }),
+            q.caption ? el("figcaption", null, esc(q.caption)) : false
+          )
+        );
+      });
+      card.appendChild(grid);
+    }
+
+    if (cta.tip) card.appendChild(el("p", { class: "cta__tip" }, esc(cta.tip)));
+    return card;
+  }
 
   // ───── Renderers ─────
   function renderCheckin(section) {
