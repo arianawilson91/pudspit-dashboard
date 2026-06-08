@@ -639,7 +639,7 @@ html, body {
   text-align: center;
   container-type: inline-size;
 }
-.reviewcard__logo { width: 62%; margin-bottom: 6%; }
+.reviewcard__logo { width: 86%; margin-bottom: 5%; }
 .reviewcard__kicker {
   font-family: var(--font-display);
   font-size: 9cqw;
