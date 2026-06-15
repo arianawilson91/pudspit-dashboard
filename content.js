@@ -20,6 +20,7 @@ window.CONTENT = {
     "The Pud's Pit weekly drop — where we're parked, what's smokin', and posts ready to drop into Canva.",
 
   sections: [
+    // >>> WEEKLY-POSTS:START (auto-regenerated every Monday — sections 01-05) >>>
     // ─────────────────────────────────────────────────
     // 01 · THIS WEEK'S DROPS
     // ─────────────────────────────────────────────────
@@ -265,6 +266,7 @@ window.CONTENT = {
         },
       ],
     },
+    // <<< WEEKLY-POSTS:END <<<
 
     // ─────────────────────────────────────────────────
     // 06 · IDEA BANK — grab-and-go content ideas.
